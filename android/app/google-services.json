@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "286520446210",
+    "firebase_url": "https://dealit-a1714.firebaseio.com",
+    "project_id": "dealit-a1714",
+    "storage_bucket": "dealit-a1714.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286520446210:android:edf10378123eb1f8fa061b",
+        "android_client_info": {
+          "package_name": "com.dealit.classified"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286520446210-n5tfaku071lvo91o396tk0sk8j4fp0iq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dealit.classified",
+            "certificate_hash": "786a8b8745d851092d59d225f81f2595af8af325"
+          }
+        },
+        {
+          "client_id": "286520446210-5itp27liri33lunq0dpav8q0re206pht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB14GQ1JSmEIG_4d7bn3wo_kqvknID6Dq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286520446210-5itp27liri33lunq0dpav8q0re206pht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2833757144977487~4316982949"
+    }
+  ],
+  "configuration_version": "1"
+}

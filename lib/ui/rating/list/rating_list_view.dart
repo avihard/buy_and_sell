@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutterbuyandsell/api/common/ps_admob_banner_widget.dart';
 import 'package:flutterbuyandsell/config/ps_colors.dart';
 import 'package:flutterbuyandsell/config/ps_config.dart';
@@ -12,7 +13,6 @@ import 'package:flutterbuyandsell/ui/common/ps_ui_widget.dart';
 import 'package:flutterbuyandsell/ui/common/smooth_star_rating_widget.dart';
 import 'package:flutterbuyandsell/utils/utils.dart';
 import 'package:flutterbuyandsell/viewobject/common/ps_value_holder.dart';
-import 'package:flutter/material.dart';
 import 'package:flutterbuyandsell/viewobject/holder/rating_list_holder.dart';
 import 'package:provider/provider.dart';
 
@@ -95,7 +95,8 @@ class _RatingListViewState extends State<RatingListView>
     loginUserId = psValueHolder.loginUserId;
     return WillPopScope(
         onWillPop: _requestPop,
-        child: PsWidgetWithAppBarWithTwoProvider<RatingListProvider, UserProvider>(
+        child: PsWidgetWithAppBarWithTwoProvider<RatingListProvider,
+                UserProvider>(
             appBarTitle: Utils.getString(context, 'rating_list__title') ?? '',
             initProvider1: () {
               ratingProvider = RatingListProvider(repo: ratingRepo);

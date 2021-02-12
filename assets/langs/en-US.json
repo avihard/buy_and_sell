@@ -138,7 +138,7 @@
   "register__title": "Register",
   "register__register": "REGISTER",
   "register__login": "Already member ? Login",
-  "register__user_name": "User Name",
+  "register__user_name": "Name",
   "register__email": "Email",
   "register__password": "Password",
   "forgot_psw__title": "Forgot Password",

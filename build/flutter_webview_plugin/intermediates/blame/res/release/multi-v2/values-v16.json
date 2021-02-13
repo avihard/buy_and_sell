@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\patel\\Downloads\\Mobile Source\\Flutter-BuySell\\build\\flutter_webview_plugin\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "C:\\Users\\DELL\\Downloads\\flutter-buy-and-sell-master\\build\\flutter_webview_plugin\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\52c49e974fe8c98ce528b8300bc8a5a5\\core-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\52c49e974fe8c98ce528b8300bc8a5a5\\core-1.1.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\c1d1fd0707ceb58863fa6253d82053e8\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\c1d1fd0707ceb58863fa6253d82053e8\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -35,10 +35,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\patel\\Downloads\\Mobile Source\\Flutter-BuySell\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\release\\values-v16\\values-v16.xml",
+            "outputFile": "C:\\Users\\DELL\\Downloads\\flutter-buy-and-sell-master\\build\\flutter_webview_plugin\\intermediates\\res\\merged\\release\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\52c49e974fe8c98ce528b8300bc8a5a5\\core-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\52c49e974fe8c98ce528b8300bc8a5a5\\core-1.1.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -48,7 +48,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\c1d1fd0707ceb58863fa6253d82053e8\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\c1d1fd0707ceb58863fa6253d82053e8\\appcompat-1.1.0\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

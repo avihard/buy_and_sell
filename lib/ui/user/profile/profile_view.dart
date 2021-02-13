@@ -21,6 +21,7 @@ import 'package:flutterbuyandsell/ui/chat/list/chat_list_view.dart';
 import 'package:flutterbuyandsell/ui/common/dialog/confirm_dialog_view.dart';
 import 'package:flutterbuyandsell/ui/common/ps_frame_loading_widget.dart';
 import 'package:flutterbuyandsell/ui/common/ps_ui_widget.dart';
+import 'package:flutterbuyandsell/ui/common/smooth_star_rating_widget.dart';
 import 'package:flutterbuyandsell/ui/item/item/product_horizontal_list_item_for_profile.dart';
 import 'package:flutterbuyandsell/ui/item/paid_ad/paid_ad_item_horizontal_list_item.dart';
 import 'package:flutterbuyandsell/utils/ps_progress_dialog.dart';
@@ -63,6 +64,7 @@ AnimationController animationControllerForFab;
 
 class _ProfilePageState extends State<ProfileView>
     with SingleTickerProviderStateMixin {
+  final User data = User();
   UserRepository userRepository;
   PsValueHolder psValueHolder;
   UserProvider provider;
@@ -156,7 +158,8 @@ class _ProfilePageState extends State<ProfileView>
                     ),
                     userId: widget.userId,
                     provider: provider,
-                    callLogoutCallBack: widget.callLogoutCallBack),
+                    callLogoutCallBack: widget.callLogoutCallBack,
+                    data: data),
                 _PaidAdWidget(
                   animationController: widget.animationController,
                   animation: Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -944,7 +947,8 @@ class _ProfileDetailWidget extends StatefulWidget {
       this.animation,
       @required this.userId,
       @required this.provider,
-      @required this.callLogoutCallBack})
+      @required this.callLogoutCallBack,
+      @required this.data})
       : super(key: key);
 
   final AnimationController animationController;
@@ -952,6 +956,7 @@ class _ProfileDetailWidget extends StatefulWidget {
   final String userId;
   final Function callLogoutCallBack;
   final UserProvider provider;
+  final User data;
 
   @override
   __ProfileDetailWidgetState createState() => __ProfileDetailWidgetState();
@@ -1057,7 +1062,7 @@ class __ProfileDetailWidgetState extends State<_ProfileDetailWidget>
                               color: PsColors.mainLightColor,
                               borderRadius: BorderRadius.circular(24)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               _VerifiedWidget(
                                 data: provider.user.data,
@@ -1065,6 +1070,23 @@ class __ProfileDetailWidgetState extends State<_ProfileDetailWidget>
                               _DeactivateAccWidget(
                                 userProvider: provider,
                                 callLogoutCallBack: widget.callLogoutCallBack,
+                              ),
+                              //  Text(provider.user.data.overallRating),
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    right: PsDimens.space10),
+                                child: SmoothStarRating(
+                                    //  key: Key(data.ratingDetail.totalRatingValue),
+                                    rating: double.parse(
+                                        provider.user.data.overallRating),
+                                    allowHalfRating: false,
+                                    isReadOnly: true,
+                                    starCount: 5,
+                                    size: PsDimens.space16,
+                                    color: Colors.yellow,
+                                    borderColor: Colors.blueGrey,
+                                    onRated: (double v) {},
+                                    spacing: 0.0),
                               ),
                             ],
                           ),
@@ -1099,7 +1121,7 @@ class _VerifiedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: PsDimens.space16,
+        left: PsDimens.space10,
         right: PsDimens.space16,
       ),
       child: Row(
@@ -1208,11 +1230,13 @@ class _DeactivateAccWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  Utils.getString(context, 'profile__deactivate_acc'),
-                  textAlign: TextAlign.start,
-                  style: Theme.of(context).textTheme.subtitle2.copyWith(
-                      fontWeight: FontWeight.normal, color: PsColors.mainColor),
-                ),
+                    // Utils.getString(context, 'profile__deactivate_acc'),
+                    'Deactivate \n Account',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(color: PsColors.mainColor, fontSize: 10)
+                    /*Theme.of(context).textTheme.subtitle2.copyWith(
+                      fontWeight: FontWeight.normal, color: PsColors.mainColor),*/
+                    ),
               ),
             ),
           ),

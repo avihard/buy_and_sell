@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutterbuyandsell/api/common/ps_resource.dart';
 import 'package:flutterbuyandsell/config/ps_colors.dart';
 import 'package:flutterbuyandsell/config/ps_config.dart';
@@ -16,8 +18,6 @@ import 'package:flutterbuyandsell/ui/common/smooth_star_rating_widget.dart';
 import 'package:flutterbuyandsell/ui/item/item/product_vertical_list_item.dart';
 import 'package:flutterbuyandsell/utils/ps_progress_dialog.dart';
 import 'package:flutterbuyandsell/utils/utils.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutterbuyandsell/viewobject/api_status.dart';
 import 'package:flutterbuyandsell/viewobject/common/ps_value_holder.dart';
 import 'package:flutterbuyandsell/viewobject/holder/intent_holder/item_list_intent_holder.dart';
@@ -34,7 +34,8 @@ import 'package:url_launcher/url_launcher.dart';
 class UserDetailView extends StatefulWidget {
   const UserDetailView({
     @required this.userId,
-    @required this.userName,});
+    @required this.userName,
+  });
   final String userId;
   final String userName;
   @override
@@ -44,7 +45,7 @@ class UserDetailView extends StatefulWidget {
 class _UserDetailViewState extends State<UserDetailView>
     with SingleTickerProviderStateMixin {
   AnimationController animationController;
- 
+
   @override
   void initState() {
     animationController =
@@ -57,7 +58,7 @@ class _UserDetailViewState extends State<UserDetailView>
     animationController.dispose();
     super.dispose();
   }
-  
+
   UserProvider userProvider;
   UserRepository userRepository;
   PsValueHolder psValueHolder;
@@ -71,13 +72,13 @@ class _UserDetailViewState extends State<UserDetailView>
     userRepository = Provider.of<UserRepository>(context);
     itemRepository = Provider.of<ProductRepository>(context);
     psValueHolder = Provider.of<PsValueHolder>(context);
-    userProvider = UserProvider(repo: userRepository, psValueHolder: psValueHolder);
+    userProvider =
+        UserProvider(repo: userRepository, psValueHolder: psValueHolder);
     itemProvider = AddedItemProvider(repo: itemRepository);
 
     parameterHolder = itemProvider.addedUserParameterHolder;
     parameterHolder.addedUserId = widget.userId;
     parameterHolder.status = '1';
-   
 
     Future<bool> _requestPop() {
       animationController.reverse().then<dynamic>(
@@ -111,22 +112,21 @@ class _UserDetailViewState extends State<UserDetailView>
 
                     return userProvider;
                   }),
-            ChangeNotifierProvider<ItemDetailProvider>(
-            lazy: false,
-            create: (BuildContext context) {
-              itemDetailProvider = ItemDetailProvider(
-                  repo: itemRepository, 
-                  psValueHolder: psValueHolder);
-              return itemDetailProvider;
-            },
-          ),
-            ChangeNotifierProvider<AddedItemProvider>(
+              ChangeNotifierProvider<ItemDetailProvider>(
                 lazy: false,
                 create: (BuildContext context) {
-                  itemProvider.loadItemList(
-                      Utils.checkUserLoginId(psValueHolder), parameterHolder);
-                  return itemProvider;
-                }),
+                  itemDetailProvider = ItemDetailProvider(
+                      repo: itemRepository, psValueHolder: psValueHolder);
+                  return itemDetailProvider;
+                },
+              ),
+              ChangeNotifierProvider<AddedItemProvider>(
+                  lazy: false,
+                  create: (BuildContext context) {
+                    itemProvider.loadItemList(
+                        Utils.checkUserLoginId(psValueHolder), parameterHolder);
+                    return itemProvider;
+                  }),
             ],
                 child: Consumer<AddedItemProvider>(builder:
                     (BuildContext context, AddedItemProvider provider,
@@ -214,11 +214,7 @@ class _UserDetailViewState extends State<UserDetailView>
                   // }else{
                   //   return Container();
                   // }
-                }
-              )
-            )
-          )
-        );
+                }))));
   }
 }
 
@@ -233,7 +229,7 @@ class _UserProfileWidget extends StatefulWidget {
   final AnimationController animationController;
   final Animation<double> animation;
   final ItemDetailProvider itemDetailProvider;
-  
+
   @override
   __UserProfileWidgetState createState() => __UserProfileWidgetState();
 }
@@ -270,14 +266,14 @@ class __UserProfileWidgetState extends State<_UserProfileWidget> {
 }
 
 class _ImageAndTextWidget extends StatefulWidget {
-  const _ImageAndTextWidget(
-    {Key key,
+  const _ImageAndTextWidget({
+    Key key,
     @required this.userId,
     @required this.loginUserId,
     @required this.data,
     @required this.userProvider,
     @required this.itemDetailProvider,
-    }): super(key: key);
+  }) : super(key: key);
 
   final String userId;
   final String loginUserId;
@@ -364,68 +360,68 @@ class __ImageAndTextWidgetState extends State<_ImageAndTextWidget> {
           _spacingWidget,
           if (widget.userProvider.psValueHolder.loginUserId !=
               widget.userProvider.user.data.userId)
-          MaterialButton(
-            color: PsColors.mainColor,
-            height: 45,
-            shape: const BeveledRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(7.0)),
-            ),
-            child: widget.userProvider.user.data.isFollowed == PsConst.ONE
-                ? Text(
-                    Utils.getString(context, 'user_detail__unfollow'),
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        .copyWith(color: Colors.white),
-                  )
-                : Text(
-                    Utils.getString(context, 'user_detail__follow'),
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        .copyWith(color: Colors.white),
-                  ),
-            onPressed: () async {
-              if (await Utils.checkInternetConnectivity()) {
-                Utils.navigateOnUserVerificationView(
-                    widget.userProvider, context, () async {
-                  if (widget.userProvider.user.data.isFollowed ==
-                      PsConst.ZERO) {
-                    setState(() {
-                      widget.userProvider.user.data.isFollowed = PsConst.ONE;
-                    });
-                  } else {
-                    setState(() {
-                      widget.userProvider.user.data.isFollowed = PsConst.ZERO;
-                    });
-                  }
-
-                  final UserFollowHolder userFollowHolder = UserFollowHolder(
-                      userId: widget.userProvider.psValueHolder.loginUserId,
-                      followedUserId: widget.data.userId);
-
-                  final PsResource<User> _user = await widget.userProvider
-                      .postUserFollow(userFollowHolder.toMap());
-                  if (_user.data != null) {
-                    if (_user.data.isFollowed == PsConst.ONE) {
-                      widget.userProvider.user.data.isFollowed = PsConst.ONE;
+            MaterialButton(
+              color: PsColors.mainColor,
+              height: 45,
+              shape: const BeveledRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(7.0)),
+              ),
+              child: widget.userProvider.user.data.isFollowed == PsConst.ONE
+                  ? Text(
+                      Utils.getString(context, 'user_detail__unfollow'),
+                      style: Theme.of(context)
+                          .textTheme
+                          .button
+                          .copyWith(color: Colors.white),
+                    )
+                  : Text(
+                      Utils.getString(context, 'user_detail__follow'),
+                      style: Theme.of(context)
+                          .textTheme
+                          .button
+                          .copyWith(color: Colors.white),
+                    ),
+              onPressed: () async {
+                if (await Utils.checkInternetConnectivity()) {
+                  Utils.navigateOnUserVerificationView(
+                      widget.userProvider, context, () async {
+                    if (widget.userProvider.user.data.isFollowed ==
+                        PsConst.ZERO) {
+                      setState(() {
+                        widget.userProvider.user.data.isFollowed = PsConst.ONE;
+                      });
                     } else {
-                      widget.userProvider.user.data.isFollowed = PsConst.ZERO;
+                      setState(() {
+                        widget.userProvider.user.data.isFollowed = PsConst.ZERO;
+                      });
                     }
-                  }
-                });
-              } else {
-                showDialog<dynamic>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return ErrorDialog(
-                        message: Utils.getString(
-                            context, 'error_dialog__no_internet'),
-                      );
-                    });
-              }
-            },
-          ),
+
+                    final UserFollowHolder userFollowHolder = UserFollowHolder(
+                        userId: widget.userProvider.psValueHolder.loginUserId,
+                        followedUserId: widget.data.userId);
+
+                    final PsResource<User> _user = await widget.userProvider
+                        .postUserFollow(userFollowHolder.toMap());
+                    if (_user.data != null) {
+                      if (_user.data.isFollowed == PsConst.ONE) {
+                        widget.userProvider.user.data.isFollowed = PsConst.ONE;
+                      } else {
+                        widget.userProvider.user.data.isFollowed = PsConst.ZERO;
+                      }
+                    }
+                  });
+                } else {
+                  showDialog<dynamic>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ErrorDialog(
+                          message: Utils.getString(
+                              context, 'error_dialog__no_internet'),
+                        );
+                      });
+                }
+              },
+            ),
           _spacingWidget,
           _dividerWidget,
           _spacingWidget,
@@ -446,40 +442,39 @@ class __ImageAndTextWidgetState extends State<_ImageAndTextWidget> {
             userId: widget.userProvider.user.data.userId,
             loginUserId: widget.userProvider.psValueHolder.loginUserId,
             userProvider: widget.userProvider,
-            ),
+          ),
           _spacingWidget,
           _dividerWidget,
           _spacingWidget,
           _spacingWidget,
           InkWell(
             onTap: () {
-              Navigator.pushNamed(
-                context, RoutePaths.userItemList,
-                arguments: ItemListIntentHolder(userId: widget.data.userId
-                    ,status: '1',
-                    title: Utils.getString(context, 'profile__listing'))
-                );
+              Navigator.pushNamed(context, RoutePaths.userItemList,
+                  arguments: ItemListIntentHolder(
+                      userId: widget.data.userId,
+                      status: '1',
+                      title: Utils.getString(context, 'profile__listing')));
             },
             child: Container(
               alignment: Alignment.center,
               child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      Utils.getString(context, 'user_detail__listing'),
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                    Text(
-                      Utils.getString(context, 'user_detail__view_all'),
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2
-                          .copyWith(color: PsColors.mainColor),
-                    ),
-                  ],
-                ),
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    Utils.getString(context, 'user_detail__listing'),
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    Utils.getString(context, 'user_detail__view_all'),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText2
+                        .copyWith(color: PsColors.mainColor),
+                  ),
+                ],
+              ),
             ),
           )
         ],
@@ -596,11 +591,11 @@ class _VerifiedWidget extends StatelessWidget {
 }
 
 class _BlockUserWidget extends StatelessWidget {
-  const _BlockUserWidget({
-   @required this.userId,
-   @required this.loginUserId,
-   @required this.itemDetailProvider,
-   @required this.userProvider});
+  const _BlockUserWidget(
+      {@required this.userId,
+      @required this.loginUserId,
+      @required this.itemDetailProvider,
+      @required this.userProvider});
 
   final String userId;
   final String loginUserId;
@@ -609,62 +604,60 @@ class _BlockUserWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Visibility(
+    return Visibility(
       visible: itemDetailProvider.psValueHolder.loginUserId != userId &&
-      itemDetailProvider.psValueHolder.loginUserId != null &&
-      itemDetailProvider.psValueHolder.loginUserId !='',
-        child: Padding(
-        padding: const EdgeInsets.only(
-          right: PsDimens.space8,
-          top: PsDimens.space8,
-        ),
-        child: Row(
-        children: <Widget>[
-          InkWell(
-          child: Text(
-            Utils.getString(context, 'user_detail__block_user'),
-             style: const TextStyle(
-             decoration: TextDecoration.underline),
+          itemDetailProvider.psValueHolder.loginUserId != null &&
+          itemDetailProvider.psValueHolder.loginUserId != '',
+      child: Padding(
+          padding: const EdgeInsets.only(
+            right: PsDimens.space8,
+            top: PsDimens.space8,
           ),
-          onTap: () async {
-          showDialog<dynamic>(
-              context: context,
-              builder: (BuildContext context) {
-                return ConfirmDialogView(
-                    description: Utils.getString(
-                        context, 'item_detail__confirm_dialog_block_user'),
-                    leftButtonText: Utils.getString(
-                        context, 'dialog__cancel'),
-                    rightButtonText: Utils.getString(
-                        context, 'dialog__ok'),
+          child: Row(children: <Widget>[
+            InkWell(
+                child: Text(
+                  Utils.getString(context, 'user_detail__block_user'),
+                  style: const TextStyle(decoration: TextDecoration.underline),
+                ),
+                onTap: () async {
+                  showDialog<dynamic>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ConfirmDialogView(
+                            description: Utils.getString(context,
+                                'item_detail__confirm_dialog_block_user'),
+                            leftButtonText:
+                                Utils.getString(context, 'dialog__cancel'),
+                            rightButtonText:
+                                Utils.getString(context, 'dialog__ok'),
+                            onAgreeTap: () async {
+                              await PsProgressDialog.showDialog(context);
 
-                    onAgreeTap: () async {
+                              final UserBlockParameterHolder
+                                  userBlockItemParameterHolder =
+                                  UserBlockParameterHolder(
+                                      loginUserId: loginUserId,
+                                      addedUserId: userId);
 
-                    await PsProgressDialog.showDialog(context);
+                              final PsResource<ApiStatus> _apiStatus =
+                                  await userProvider.blockUser(
+                                      userBlockItemParameterHolder.toMap());
 
-                    final UserBlockParameterHolder userBlockItemParameterHolder =
-                    UserBlockParameterHolder(
-                    loginUserId: loginUserId, addedUserId: userId);
+                              if (_apiStatus != null &&
+                                  _apiStatus.data != null &&
+                                  _apiStatus.data.status != null) {
+                                await itemDetailProvider
+                                    .deleteLocalProductCacheByUserId(
+                                        loginUserId, userId);
+                              }
 
-                    final PsResource<ApiStatus> _apiStatus = await userProvider
-                    .blockUser(userBlockItemParameterHolder.toMap());                      
-                    
-                    if(_apiStatus != null &&_apiStatus.data != null &&_apiStatus.data.status != null){
-
-                    await itemDetailProvider.deleteLocalProductCacheByUserId(loginUserId, userId);                   
-
-                    }
-
-                    PsProgressDialog.dismissDialog();
-                    Navigator.of(context).popUntil(ModalRoute.withName(RoutePaths.home));
-                      
-                    }
-                  );
-              });
-            }
-          )
-        ])
-      ),
-     );
-    }
+                              PsProgressDialog.dismissDialog();
+                              Navigator.of(context).popUntil(
+                                  ModalRoute.withName(RoutePaths.home));
+                            });
+                      });
+                })
+          ])),
+    );
+  }
 }

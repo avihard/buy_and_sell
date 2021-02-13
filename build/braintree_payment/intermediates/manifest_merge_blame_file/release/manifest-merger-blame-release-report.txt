@@ -3,6 +3,6 @@
 3    package="com.deligence.braintree_payment" >
 4
 5    <uses-sdk android:minSdkVersion="21" />
-5-->D:\flutter_sdk\flutter\.pub-cache\hosted\pub.dartlang.org\braintree_payment-1.2.4\android\src\main\AndroidManifest.xml
+5-->C:\Flutter-SDK\flutter\.pub-cache\hosted\pub.dartlang.org\braintree_payment-1.2.4\android\src\main\AndroidManifest.xml
 6
 7</manifest>

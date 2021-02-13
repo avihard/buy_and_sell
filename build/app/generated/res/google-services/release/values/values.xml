@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="default_web_client_id" translatable="false">505384053995-os47l4nuda9ummu2u33btva3uocdoqd6.apps.googleusercontent.com</string>
-    <string name="firebase_database_url" translatable="false">https://flutter-buy-and-sell.firebaseio.com</string>
-    <string name="gcm_defaultSenderId" translatable="false">505384053995</string>
-    <string name="google_api_key" translatable="false">AIzaSyBtTRnm8XIQqcFo2B-eao0oelE4T0etKhM</string>
-    <string name="google_app_id" translatable="false">1:505384053995:android:ee25be13120e023b4ae2ae</string>
-    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBtTRnm8XIQqcFo2B-eao0oelE4T0etKhM</string>
-    <string name="google_storage_bucket" translatable="false">flutter-buy-and-sell.appspot.com</string>
-    <string name="project_id" translatable="false">flutter-buy-and-sell</string>
+    <string name="default_web_client_id" translatable="false">286520446210-5itp27liri33lunq0dpav8q0re206pht.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://dealit-a1714.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">286520446210</string>
+    <string name="google_api_key" translatable="false">AIzaSyB14GQ1JSmEIG_4d7bn3wo_kqvknID6Dq4</string>
+    <string name="google_app_id" translatable="false">1:286520446210:android:edf10378123eb1f8fa061b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB14GQ1JSmEIG_4d7bn3wo_kqvknID6Dq4</string>
+    <string name="google_storage_bucket" translatable="false">dealit-a1714.appspot.com</string>
+    <string name="project_id" translatable="false">dealit-a1714</string>
 </resources>

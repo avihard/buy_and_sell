@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\patel\\Downloads\\Mobile Source\\Flutter-BuySell\\build\\braintree_payment\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+            "outputFile": "C:\\Users\\DELL\\Downloads\\flutter-buy-and-sell-master\\build\\braintree_payment\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\2131c262effea5bf8f8b1803ad291abd\\appcompat-1.0.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\2131c262effea5bf8f8b1803ad291abd\\appcompat-1.0.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\bf3223f0ecaf6bb54272664071878b3a\\material-1.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\bf3223f0ecaf6bb54272664071878b3a\\material-1.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -35,10 +35,10 @@
             ]
         },
         {
-            "outputFile": "C:\\Users\\patel\\Downloads\\Mobile Source\\Flutter-BuySell\\build\\braintree_payment\\intermediates\\res\\merged\\release\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+            "outputFile": "C:\\Users\\DELL\\Downloads\\flutter-buy-and-sell-master\\build\\braintree_payment\\intermediates\\res\\merged\\release\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\2131c262effea5bf8f8b1803ad291abd\\appcompat-1.0.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\2131c262effea5bf8f8b1803ad291abd\\appcompat-1.0.1\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -48,7 +48,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\patel\\.gradle\\caches\\transforms-2\\files-2.1\\bf3223f0ecaf6bb54272664071878b3a\\material-1.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\DELL\\.gradle\\caches\\transforms-2\\files-2.1\\bf3223f0ecaf6bb54272664071878b3a\\material-1.0.0\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

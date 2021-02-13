@@ -3,6 +3,6 @@
 3    package="dev.gilder.tom.apple_sign_in" >
 4
 5    <uses-sdk android:minSdkVersion="16" />
-5-->D:\flutter_sdk\flutter\.pub-cache\hosted\pub.dartlang.org\apple_sign_in-0.1.0\android\src\main\AndroidManifest.xml
+5-->C:\Flutter-SDK\flutter\.pub-cache\hosted\pub.dartlang.org\apple_sign_in-0.1.0\android\src\main\AndroidManifest.xml
 6
 7</manifest>

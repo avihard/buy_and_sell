@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.panaceasoft.flutterbuyandsell"
+    package="com.dealit.classified"
     android:versionCode="12"
     android:versionName="1.9.0" >
 
@@ -45,7 +45,7 @@
     android:name=".Application"
     -->
     <application
-        android:name="com.panaceasoft.flutterbuyandsell.Application"
+        android:name="com.dealit.classified.Application"
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:icon="@mipmap/ic_launcher"
@@ -55,7 +55,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name="com.panaceasoft.flutterbuyandsell.MainActivity"
+            android:name="com.dealit.classified.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"
@@ -105,7 +105,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="com.panaceasoft.flutterbuyandsell.braintree" />
+                <data android:scheme="com.dealit.classified.braintree" />
             </intent-filter>
         </activity>
 
@@ -243,7 +243,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.panaceasoft.flutterbuyandsell.fileprovider"
+            android:authorities="com.dealit.classified.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -307,7 +307,7 @@
 
         <provider
             android:name="com.sangcomz.fishbun.FishBunFileProvider"
-            android:authorities="com.panaceasoft.flutterbuyandsell.fishbunfileprovider"
+            android:authorities="com.dealit.classified.fishbunfileprovider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -348,7 +348,7 @@
 
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
-            android:authorities="com.panaceasoft.flutterbuyandsell.firebaseinitprovider"
+            android:authorities="com.dealit.classified.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
 
@@ -375,7 +375,7 @@
 
         <provider
             android:name="com.google.android.gms.ads.MobileAdsInitProvider"
-            android:authorities="com.panaceasoft.flutterbuyandsell.mobileadsinitprovider"
+            android:authorities="com.dealit.classified.mobileadsinitprovider"
             android:exported="false"
             android:initOrder="100" />
 
@@ -393,7 +393,7 @@
         -->
         <provider
             android:name="com.facebook.internal.FacebookInitProvider"
-            android:authorities="com.panaceasoft.flutterbuyandsell.FacebookInitProvider"
+            android:authorities="com.dealit.classified.FacebookInitProvider"
             android:exported="false" />
 
         <receiver

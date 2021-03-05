@@ -243,14 +243,13 @@ class _CardWidget extends StatelessWidget {
                   keyboardType: TextInputType.phone,
                   decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: '+919123456789',
+                      hintText: '9123456789',
                       hintStyle: Theme.of(context)
                           .textTheme
                           .button
                           .copyWith(color: PsColors.textPrimaryLightColor),
                       icon: Icon(Icons.phone,
                           color: Theme.of(context).iconTheme.color)),
-                  // keyboardType: TextInputType.number,
                 )),
           ),
         ],
@@ -299,13 +298,13 @@ class __SendButtonWidgetState extends State<_SendButtonWidget> {
 
       if (widget.phoneSignInSelected != null) {
         widget.phoneSignInSelected(widget.nameController.text,
-            widget.phoneController.text, verificationId);
+            '+91' + widget.phoneController.text, verificationId);
       } else {
         Navigator.pushReplacementNamed(
             context, RoutePaths.user_phone_verify_container,
             arguments: VerifyPhoneIntentHolder(
                 userName: widget.nameController.text,
-                phoneNumber: widget.phoneController.text,
+                phoneNumber: '+91' + widget.phoneController.text,
                 phoneId: verificationId));
       }
     };
@@ -326,7 +325,7 @@ class __SendButtonWidgetState extends State<_SendButtonWidget> {
           });
     };
     await FirebaseAuth.instance.verifyPhoneNumber(
-        phoneNumber: widget.phoneController.text,
+        phoneNumber: '+91' + widget.phoneController.text,
         codeAutoRetrievalTimeout: autoRetrieve,
         codeSent: smsCodeSent,
         timeout: const Duration(minutes: 2),

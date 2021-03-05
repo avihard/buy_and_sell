@@ -149,8 +149,8 @@ class _HomeDashboardViewWidgetState extends State<HomeDashboardViewWidget> {
               create: (BuildContext context) {
                 _recentProductProvider = RecentProductProvider(
                     repo: repo2, limit: PsConfig.RECENT_ITEM_LOADING_LIMIT);
-                _recentProductProvider.productRecentParameterHolder
-                    .itemLocationId = valueHolder.locationId;
+                // _recentProductProvider.productRecentParameterHolder
+                //     .itemLocationId = valueHolder.locationId;
                 final String loginUserId = Utils.checkUserLoginId(valueHolder);
                 _recentProductProvider.loadProductList(loginUserId,
                     _recentProductProvider.productRecentParameterHolder);
@@ -161,8 +161,8 @@ class _HomeDashboardViewWidgetState extends State<HomeDashboardViewWidget> {
               create: (BuildContext context) {
                 _popularProductProvider = PopularProductProvider(
                     repo: repo2, limit: PsConfig.POPULAR_ITEM_LOADING_LIMIT);
-                _popularProductProvider.productPopularParameterHolder
-                    .itemLocationId = valueHolder.locationId;
+                // _popularProductProvider.productPopularParameterHolder
+                //     .itemLocationId = valueHolder.locationId;
                 final String loginUserId = Utils.checkUserLoginId(valueHolder);
                 _popularProductProvider.loadProductList(loginUserId,
                     _popularProductProvider.productPopularParameterHolder);

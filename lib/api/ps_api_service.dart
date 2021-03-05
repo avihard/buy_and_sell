@@ -618,7 +618,7 @@ class PsApiService extends PsApi {
       int offset) async {
     final String url =
         '${PsUrl.ps_item_location_url}/api_key/${PsConfig.ps_api_key}/limit/$limit/offset/$offset/login_user_id/$loginUserId';
-
+    print(url);
     return await postData<ItemLocation, List<ItemLocation>>(
         ItemLocation(), url, jsonMap);
   }

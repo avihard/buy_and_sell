@@ -1062,7 +1062,8 @@ class __ProfileDetailWidgetState extends State<_ProfileDetailWidget>
                               color: PsColors.mainLightColor,
                               borderRadius: BorderRadius.circular(24)),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               _VerifiedWidget(
                                 data: provider.user.data,

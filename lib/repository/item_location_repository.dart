@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'package:flutterbuyandsell/constant/ps_constants.dart';
-import 'package:flutterbuyandsell/db/item_loacation_dao.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutterbuyandsell/api/common/ps_resource.dart';
 import 'package:flutterbuyandsell/api/common/ps_status.dart';
 import 'package:flutterbuyandsell/api/ps_api_service.dart';
+import 'package:flutterbuyandsell/constant/ps_constants.dart';
+import 'package:flutterbuyandsell/db/item_loacation_dao.dart';
 import 'package:flutterbuyandsell/viewobject/item_location.dart';
 
 import 'Common/ps_repository.dart';
@@ -46,8 +47,8 @@ class ItemLocationRepository extends PsRepository {
         .add(await _itemLocationDao.getAll(status: status));
 
     if (isConnectedToInternet) {
-      final PsResource<List<ItemLocation>> _resource =
-          await _psApiService.getItemLocationList(jsonMap,loginUserId,limit, offset);
+      final PsResource<List<ItemLocation>> _resource = await _psApiService
+          .getItemLocationList(jsonMap, loginUserId, limit, offset);
 
       if (_resource.status == PsStatus.SUCCESS) {
         await _itemLocationDao.deleteAll();
@@ -59,7 +60,7 @@ class ItemLocationRepository extends PsRepository {
         }
       }
       itemLocationListStream.sink.add(await _itemLocationDao.getAll(
-            status: _resource.status, message: _resource.message));
+          status: _resource.status, message: _resource.message));
     }
   }
 
@@ -76,8 +77,8 @@ class ItemLocationRepository extends PsRepository {
         .add(await _itemLocationDao.getAll(status: status));
 
     if (isConnectedToInternet) {
-      final PsResource<List<ItemLocation>> _resource =
-          await _psApiService.getItemLocationList(jsonMap, loginUserId,limit, offset);
+      final PsResource<List<ItemLocation>> _resource = await _psApiService
+          .getItemLocationList(jsonMap, loginUserId, limit, offset);
 
       if (_resource.status == PsStatus.SUCCESS) {
         await _itemLocationDao.insertAll(primaryKey, _resource.data);

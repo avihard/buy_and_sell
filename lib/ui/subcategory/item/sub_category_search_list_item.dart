@@ -1,8 +1,7 @@
-import 'package:flutterbuyandsell/config/ps_colors.dart';
-import 'package:flutterbuyandsell/constant/ps_dimens.dart';
-import 'package:flutterbuyandsell/viewobject/sub_category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterbuyandsell/constant/ps_dimens.dart';
+import 'package:flutterbuyandsell/viewobject/sub_category.dart';
 
 class SubCategorySearchListItem extends StatelessWidget {
   const SubCategorySearchListItem(
@@ -30,7 +29,7 @@ class SubCategorySearchListItem extends StatelessWidget {
           height: PsDimens.space52,
           margin: const EdgeInsets.only(top: PsDimens.space4),
           child: Ink(
-            color: PsColors.backgroundColor,
+            // color: PsColors.backgroundColor,
             child: Padding(
               padding: const EdgeInsets.all(PsDimens.space16),
               child: Text(

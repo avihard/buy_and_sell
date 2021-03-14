@@ -32,7 +32,6 @@ import 'package:flutterbuyandsell/viewobject/holder/intent_holder/map_pin_call_b
 import 'package:flutterbuyandsell/viewobject/holder/intent_holder/map_pin_intent_holder.dart';
 import 'package:flutterbuyandsell/viewobject/holder/item_entry_parameter_holder.dart';
 import 'package:flutterbuyandsell/viewobject/item_currency.dart';
-import 'package:flutterbuyandsell/viewobject/item_location.dart';
 import 'package:flutterbuyandsell/viewobject/item_price_type.dart';
 import 'package:flutterbuyandsell/viewobject/item_type.dart';
 import 'package:flutterbuyandsell/viewobject/product.dart';
@@ -1180,7 +1179,8 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
           )
         ],
       ),
-      PsDropdownBaseWithControllerWidget(
+
+      /*PsDropdownBaseWithControllerWidget(
           title: Utils.getString(context, 'item_entry__location'),
           // selectedText: provider.selectedItemLocation == ''
           //     ? provider.psValueHolder.locactionName
@@ -1216,8 +1216,8 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
                 widget.userInputAddress.text = '';
               });
             }
-          }),
-      CurrentLocationWidget(
+          }),*/
+      /*   CurrentLocationWidget(
         androidFusedLocation: true,
         textEditingController: widget.userInputAddress,
         latController: widget.userInputLattitude,
@@ -1232,7 +1232,7 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
             });
           }
         },
-      ),
+      ),*/
       Padding(
         padding: const EdgeInsets.only(right: 8, left: 8),
         child: Container(

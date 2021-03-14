@@ -739,17 +739,8 @@ class __HomeCategoryHorizontalListWidgetState
                             crossAxisCount: 2,
                           ),
                           shrinkWrap: true,
-                          padding:
-                              const EdgeInsets.only(left: PsDimens.space16),
                           scrollDirection: Axis.vertical,
-                          itemCount:
-                              4, //categoryProvider.categoryList.data.length,
-                          /*ListView.builder(
-                          shrinkWrap: true,
-                          padding:
-                          const EdgeInsets.only(left: PsDimens.space16),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categoryProvider.categoryList.data.length,*/
+                          itemCount: 4,
                           itemBuilder: (BuildContext context, int index) {
                             if (categoryProvider.categoryList.status ==
                                 PsStatus.BLOCK_LOADING) {
@@ -1106,8 +1097,7 @@ class __MyHomeHeaderWidgetState extends State<_MyHomeHeaderWidget> {
             children: <Widget>[
               Flexible(
                 child: Text(
-                  'All categories',
-                  //Utils.getString(context, 'app_name'),
+                  Utils.getString(context, 'app_name'),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context)
@@ -1133,19 +1123,8 @@ class __MyHomeHeaderWidgetState extends State<_MyHomeHeaderWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Expanded(
-                  child: Row(
-                children: [
-                  IconButton(
-                      icon: Icon(Icons.list),
-                      onPressed: () {
-                        widget.isGrid = false;
-                      }),
-                  IconButton(
-                      icon: Icon(Icons.grid_view),
-                      onPressed: () {
-                        widget.isGrid = true;
-                      }),
-                ],
+                  child: SizedBox(
+                height: 30,
               )),
               Column(
                 mainAxisAlignment: MainAxisAlignment.end,

@@ -1,8 +1,7 @@
-import 'package:flutterbuyandsell/config/ps_colors.dart';
-import 'package:flutterbuyandsell/constant/ps_dimens.dart';
-import 'package:flutterbuyandsell/viewobject/category.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterbuyandsell/constant/ps_dimens.dart';
+import 'package:flutterbuyandsell/viewobject/category.dart';
 
 class CategoryFilterListItem extends StatelessWidget {
   const CategoryFilterListItem(
@@ -28,12 +27,10 @@ class CategoryFilterListItem extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: PsDimens.space52,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20)
-          ),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
           margin: const EdgeInsets.only(bottom: PsDimens.space4),
           child: Ink(
-            color: PsColors.backgroundColor,
+            //   color: PsColors.backgroundColor,
             child: Padding(
               padding: const EdgeInsets.all(PsDimens.space16),
               child: Text(

@@ -1,7 +1,6 @@
-import 'package:flutterbuyandsell/config/ps_colors.dart';
-import 'package:flutterbuyandsell/constant/ps_dimens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterbuyandsell/constant/ps_dimens.dart';
 import 'package:flutterbuyandsell/viewobject/deal_option.dart';
 
 class ItemDealOptionListViewItem extends StatelessWidget {
@@ -30,7 +29,7 @@ class ItemDealOptionListViewItem extends StatelessWidget {
           height: PsDimens.space52,
           margin: const EdgeInsets.only(bottom: PsDimens.space4),
           child: Ink(
-            color: PsColors.backgroundColor,
+            //   color: PsColors.backgroundColor,
             child: Padding(
               padding: const EdgeInsets.all(PsDimens.space16),
               child: Text(

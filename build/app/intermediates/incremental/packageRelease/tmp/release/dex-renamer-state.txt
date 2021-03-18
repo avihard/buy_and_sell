@@ -1,7 +1,0 @@
-#Sun Mar 14 22:10:37 IST 2021
-base.0=C\:\\Users\\DELL\\Downloads\\flutter-buy-and-sell-master\\build\\app\\intermediates\\dex\\release\\shrunkDex\\classes.dex
-path.1=classes2.dex
-renamed.1=classes2.dex
-path.0=classes.dex
-renamed.0=classes.dex
-base.1=C\:\\Users\\DELL\\Downloads\\flutter-buy-and-sell-master\\build\\app\\intermediates\\dex\\release\\shrunkDex\\classes2.dex

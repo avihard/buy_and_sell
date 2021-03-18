@@ -1179,7 +1179,6 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
           )
         ],
       ),
-
       /*PsDropdownBaseWithControllerWidget(
           title: Utils.getString(context, 'item_entry__location'),
           // selectedText: provider.selectedItemLocation == ''
@@ -1200,8 +1199,10 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
             final dynamic itemLocationResult =
                 await Navigator.pushNamed(context, RoutePaths.itemLocation);
 
-            if (itemLocationResult != null &&
-                itemLocationResult is ItemLocation) {
+            if (itemLocationResult !=
+                    null */ /*&&
+                itemLocationResult is ItemLocation*/ /*
+                ) {
               provider.itemLocationId = itemLocationResult.id;
               setState(() {
                 widget.locationController.text = itemLocationResult.name;
@@ -1217,7 +1218,7 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
               });
             }
           }),*/
-      /*   CurrentLocationWidget(
+      CurrentLocationWidget(
         androidFusedLocation: true,
         textEditingController: widget.userInputAddress,
         latController: widget.userInputLattitude,
@@ -1232,7 +1233,7 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
             });
           }
         },
-      ),*/
+      ),
       Padding(
         padding: const EdgeInsets.only(right: 8, left: 8),
         child: Container(
@@ -1883,11 +1884,12 @@ class _LocationState extends State<CurrentLocationWidget> {
       ).then((Position position) {
         if (mounted) {
           setState(() {
+            print(position.latitude);
             _currentPosition = position;
           });
         }
       }).catchError((Object e) {
-        //
+        print(e.toString());
       });
   }
 

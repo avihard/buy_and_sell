@@ -1062,16 +1062,16 @@ class __ProfileDetailWidgetState extends State<_ProfileDetailWidget>
                               color: PsColors.mainLightColor,
                               borderRadius: BorderRadius.circular(24)),
                           child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            // mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               _VerifiedWidget(
                                 data: provider.user.data,
                               ),
-                              _DeactivateAccWidget(
+                              /*  _DeactivateAccWidget(
                                 userProvider: provider,
                                 callLogoutCallBack: widget.callLogoutCallBack,
-                              ),
+                              ),*/
                               //  Text(provider.user.data.overallRating),
                               Padding(
                                 padding: const EdgeInsets.only(

@@ -548,10 +548,17 @@ class __RecentProductHorizontalListWidgetState
                     },
                   ),
                   Container(
-                      height: PsDimens.space340,
+                      // height: PsDimens.space340,
                       width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
+                      child: GridView.builder(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.5,
+                            crossAxisSpacing: 5,
+                          ),
                           itemCount: productProvider.productList.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             if (productProvider.productList.status ==

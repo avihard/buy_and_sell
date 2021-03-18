@@ -1,7 +1,7 @@
-import 'package:flutterbuyandsell/config/ps_colors.dart';
-import 'package:flutterbuyandsell/constant/ps_constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterbuyandsell/config/ps_colors.dart';
+import 'package:flutterbuyandsell/constant/ps_constants.dart';
 import 'package:flutterbuyandsell/constant/ps_dimens.dart';
 import 'package:flutterbuyandsell/ui/common/ps_hero.dart';
 import 'package:flutterbuyandsell/ui/common/ps_ui_widget.dart';
@@ -34,11 +34,10 @@ class ProductHorizontalListItem extends StatelessWidget {
               horizontal: PsDimens.space4, vertical: PsDimens.space12),
           decoration: BoxDecoration(
             color: PsColors.backgroundColor,
-            borderRadius:(
-                 BorderRadius.circular(16)
-                 ),
+            borderRadius: (BorderRadius.circular(16)),
           ),
           width: PsDimens.space180,
+          height: PsDimens.space380,
           // child:
           //  ClipPath(
           // child: Container(
@@ -71,18 +70,19 @@ class ProductHorizontalListItem extends StatelessWidget {
                             onTap();
                           },
                         ),
-                        const SizedBox(width : PsDimens.space8),
+                        const SizedBox(width: PsDimens.space8),
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                bottom: PsDimens.space8,
-                                top: PsDimens.space8),
+                                bottom: PsDimens.space8, top: PsDimens.space8),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text(product.user.userName == ''?
-                                  Utils.getString(context, 'default__user_name'):
-                                  '${product.user.userName}',
+                                Text(
+                                    product.user.userName == ''
+                                        ? Utils.getString(
+                                            context, 'default__user_name')
+                                        : '${product.user.userName}',
                                     textAlign: TextAlign.start,
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,

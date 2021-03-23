@@ -1,12 +1,12 @@
 import 'dart:math';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutterbuyandsell/config/ps_colors.dart';
 import 'package:flutterbuyandsell/constant/ps_constants.dart';
-import 'package:flutterbuyandsell/constant/ps_dimens.dart';
 import 'package:flutterbuyandsell/ui/common/base/ps_widget_with_appbar_with_no_provider.dart';
 import 'package:flutterbuyandsell/utils/utils.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutterbuyandsell/viewobject/holder/intent_holder/map_pin_call_back_holder.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:latlong/latlong.dart';
@@ -48,7 +48,7 @@ class _MapPinViewState extends State<MapPinView> with TickerProviderStateMixin {
 
     return PsWidgetWithAppBarWithNoProvider(
         appBarTitle: Utils.getString(context, 'map_filter__title'),
-        actions: widget.flag == PsConst.PIN_MAP
+        /* actions: widget.flag == PsConst.PIN_MAP
             ? <Widget>[
                 InkWell(
                   child: Ink(
@@ -73,7 +73,7 @@ class _MapPinViewState extends State<MapPinView> with TickerProviderStateMixin {
                   width: PsDimens.space16,
                 ),
               ]
-            : <Widget>[],
+            : <Widget>[],*/
         child: Scaffold(
           body: Column(
             children: <Widget>[
@@ -93,18 +93,38 @@ class _MapPinViewState extends State<MapPinView> with TickerProviderStateMixin {
                     ),
                     MarkerLayerOptions(markers: <Marker>[
                       Marker(
-                        width: 80.0,
-                        height: 80.0,
+                        width: 150.0,
+                        height: 120.0,
                         point: latlng,
-                        builder: (BuildContext ctx) => Container(
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.location_on,
+                        builder: (BuildContext ctx) => Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            RaisedButton(
+                              onPressed: () {
+                                Navigator.pop(
+                                    context,
+                                    MapPinCallBackHolder(
+                                        address: address, latLng: latlng));
+                              },
                               color: PsColors.mainColor,
+                              child: Text(
+                                'Pick Location',
+                                style: TextStyle(
+                                  color: PsColors.backgroundColor
+                                ),
+                              ),
                             ),
-                            iconSize: 45,
-                            onPressed: () {},
-                          ),
+                            Container(
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.location_on,
+                                  color: PsColors.mainColor,
+                                ),
+                                iconSize: 45,
+                                onPressed: () {},
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     ])

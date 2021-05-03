@@ -10,7 +10,6 @@ import 'package:flutterbuyandsell/ui/common/smooth_star_rating_widget.dart';
 import 'package:flutterbuyandsell/utils/utils.dart';
 import 'package:flutterbuyandsell/viewobject/holder/intent_holder/user_intent_holder.dart';
 import 'package:flutterbuyandsell/viewobject/product.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SellerInfoTileView extends StatelessWidget {
   const SellerInfoTileView({
@@ -120,12 +119,13 @@ class ImageAndTextWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text( data.user.userName == '' ?
-                Utils.getString(context, 'default__user_name'):
-                data.user.userName,
+              Text(
+                  data.user.userName == ''
+                      ? Utils.getString(context, 'default__user_name')
+                      : data.user.userName,
                   style: Theme.of(context).textTheme.subtitle2),
-              _spacingWidget,
-              Row(
+              //_spacingWidget,
+              /*Row(
                 children: <Widget>[
                   const Icon(
                     Icons.phone,
@@ -150,7 +150,7 @@ class ImageAndTextWidget extends StatelessWidget {
                     },
                   ),
                 ],
-              ),
+              ),*/
               _spacingWidget,
               _RatingWidget(
                 data: data,

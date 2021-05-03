@@ -29,7 +29,6 @@ import 'package:flutterbuyandsell/viewobject/product.dart';
 import 'package:flutterbuyandsell/viewobject/user.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class UserDetailView extends StatefulWidget {
   const UserDetailView({
@@ -321,6 +320,8 @@ class __ImageAndTextWidgetState extends State<_ImageAndTextWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
+                    _spacingWidget,
+                    _spacingWidget,
                     Text(widget.data.userName,
                         style: Theme.of(context).textTheme.subtitle1),
                     _spacingWidget,
@@ -328,7 +329,7 @@ class __ImageAndTextWidgetState extends State<_ImageAndTextWidget> {
                       data: widget.data,
                     ),
                     _spacingWidget,
-                    Row(
+                    /*Row(
                       children: <Widget>[
                         const Icon(
                           Icons.phone,
@@ -336,7 +337,7 @@ class __ImageAndTextWidgetState extends State<_ImageAndTextWidget> {
                         const SizedBox(
                           width: PsDimens.space8,
                         ),
-                        InkWell(
+                        */ /*InkWell(
                           child: Text(
                             widget.data.userPhone,
                             style: Theme.of(context).textTheme.bodyText1,
@@ -349,9 +350,9 @@ class __ImageAndTextWidgetState extends State<_ImageAndTextWidget> {
                               throw 'Could not Call Phone Number 1';
                             }
                           },
-                        ),
+                        ),*/ /*
                       ],
-                    ),
+                    ),*/
                   ],
                 ),
               ),

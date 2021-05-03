@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:braintree_payment/braintree_payment.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutterbuyandsell/api/common/ps_resource.dart';
@@ -28,7 +29,6 @@ import 'package:flutterbuyandsell/utils/ps_progress_dialog.dart';
 import 'package:flutterbuyandsell/utils/utils.dart';
 import 'package:flutterbuyandsell/viewobject/api_status.dart';
 import 'package:flutterbuyandsell/viewobject/common/ps_value_holder.dart';
-import 'package:flutter/material.dart';
 import 'package:flutterbuyandsell/viewobject/holder/app_info_parameter_holder.dart';
 import 'package:flutterbuyandsell/viewobject/holder/item_paid_history_parameter_holder.dart';
 import 'package:flutterbuyandsell/viewobject/holder/paid_history_holder.dart';
@@ -129,10 +129,10 @@ class _ItemPromoteViewState extends State<ItemPromoteView>
                     DateFormat('yyyy-MM-dd hh:mm:ss').format(DateTime.now());
                 final AppInfoParameterHolder appInfoParameterHolder =
                     AppInfoParameterHolder(
-                  startDate: realStartDate,
-                  endDate: realEndDate,
-                  userId: Utils.checkUserLoginId(appInfoProvider.psValueHolder)
-                );
+                        startDate: realStartDate,
+                        endDate: realEndDate,
+                        userId: Utils.checkUserLoginId(
+                            appInfoProvider.psValueHolder));
                 appInfoProvider.loadDeleteHistorywithNotifier(
                     appInfoParameterHolder.toMap());
                 // }
@@ -318,7 +318,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                     return WarningDialog(
                       message: Utils.getString(
                           context, 'item_promote__choose_start_date'),
-                      onPressed: (){},
+                      onPressed: () {},
                     );
                   });
             } else {
@@ -326,8 +326,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                   Provider.of<AppInfoProvider>(context, listen: false);
               final UserProvider userProvider =
                   Provider.of<UserProvider>(context, listen: false);
-              payStackKey =
-                  appProvider.appInfo.data.payStackKey;
+              payStackKey = appProvider.appInfo.data.payStackKey;
 
               if (provider.selectedDate != null) {
                 startDate = provider.selectedDate;
@@ -340,8 +339,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                 final double amountByEnterDay = double.parse(howManyDay) *
                     double.parse(provider.appInfo.data.oneDay);
                 amount = amountByEnterDay.toString();
-                payStackKey =
-                    provider.appInfo.data.payStackKey;
+                payStackKey = provider.appInfo.data.payStackKey;
               }
 
               final DateTime dateTime = DateTime.now();
@@ -397,7 +395,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                     return WarningDialog(
                       message: Utils.getString(
                           context, 'item_promote__choose_start_date'),
-                      onPressed: (){},
+                      onPressed: () {},
                     );
                   });
             } else {
@@ -448,10 +446,10 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
     );
     final Widget paypalButtonWidget = Container(
       margin: const EdgeInsets.only(
-          left: PsDimens.space16,
-          right: PsDimens.space16,
-          bottom: PsDimens.space16,
-          ),
+        left: PsDimens.space16,
+        right: PsDimens.space16,
+        bottom: PsDimens.space16,
+      ),
       width: double.infinity,
       height: PsDimens.space44,
       child: PSButtonWithIconWidget(
@@ -479,7 +477,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                     return WarningDialog(
                       message: Utils.getString(
                           context, 'item_promote__choose_start_date'),
-                      onPressed: (){},
+                      onPressed: () {},
                     );
                   });
             } else {
@@ -590,7 +588,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                     return WarningDialog(
                       message: Utils.getString(
                           context, 'item_promote__choose_start_date'),
-                      onPressed: (){},
+                      onPressed: () {},
                     );
                   });
             } else {
@@ -676,7 +674,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                     return WarningDialog(
                       message: Utils.getString(
                           context, 'item_promote__choose_start_date'),
-                      onPressed: (){},
+                      onPressed: () {},
                     );
                   });
             } else {
@@ -730,7 +728,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                           message:
                               Utils.getString(context, 'item_promote__success'),
                           onPressed: () {
-                            Navigator.pop(context,true);
+                            Navigator.pop(context, true);
                           },
                         );
                       });
@@ -1277,11 +1275,9 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                                                   .textTheme
                                                   .bodyText2,
                                               decoration: const InputDecoration(
-                                                contentPadding:
-                                                    EdgeInsets.only(
-                                                        left: PsDimens.space28,
-                                                        bottom:
-                                                            PsDimens.space16),
+                                                contentPadding: EdgeInsets.only(
+                                                    left: PsDimens.space28,
+                                                    bottom: PsDimens.space16),
                                                 border: InputBorder.none,
                                               ))),
                                       Text(Utils.getString(
@@ -1298,7 +1294,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
               ),
 
               const SizedBox(height: PsDimens.space16),
-              
+
               if (appInfoprovider.appInfo.data.paypalEnable ==
                   PsConst.PAYPAL_ENABLE)
                 paypalButtonWidget,
@@ -1315,8 +1311,7 @@ class AdsHowManyDayWidgetState extends State<AdsHowManyDayWidget> {
                   PsConst.OFFLINE_PAYMENT_ENABLE)
                 offlinePaymentButtonWidget,
 
-              if (appInfoprovider.appInfo.data.payStackEnabled ==
-                  PsConst.ONE)
+              if (appInfoprovider.appInfo.data.payStackEnabled == PsConst.ONE)
                 payStackButtonWidget,
 
               const SizedBox(height: PsDimens.space32),

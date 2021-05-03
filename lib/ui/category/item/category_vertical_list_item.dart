@@ -25,20 +25,19 @@ class CategoryVerticalListItem extends StatelessWidget {
     animationController.forward();
     return AnimatedBuilder(
         animation: animationController,
-          child: GestureDetector(
+        child: GestureDetector(
             onTap: onTap,
             child: Card(
                 elevation: 0.3,
-                borderOnForeground: false,
-                shape: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20)
-                ),
+                //borderOnForeground: false,
+                shape:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
                 child: Container(
                     child: Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
                         child: Stack(
                           children: <Widget>[
                             PsNetworkImage(
@@ -61,7 +60,7 @@ class CategoryVerticalListItem extends StatelessWidget {
                       style: Theme.of(context).textTheme.subtitle2.copyWith(
                           color: PsColors.white, fontWeight: FontWeight.bold),
                     ),
-                    Container(
+                    /*Container(
                         child: Positioned(
                       bottom: 10,
                       left: 10,
@@ -73,7 +72,7 @@ class CategoryVerticalListItem extends StatelessWidget {
                         boxfit: BoxFit.cover,
                         onTap: onTap,
                       ),
-                    )),
+                    )),*/
                   ],
                 )))),
         builder: (BuildContext context, Widget child) {

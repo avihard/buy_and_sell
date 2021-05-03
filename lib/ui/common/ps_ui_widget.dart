@@ -1,12 +1,13 @@
 import 'dart:io';
-import 'package:flutterbuyandsell/ui/common/ps_hero.dart';
-import 'package:flutterbuyandsell/ui/common/ps_square_progress_widget.dart';
-import 'package:flutterbuyandsell/viewobject/default_icon.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterbuyandsell/api/common/ps_status.dart';
 import 'package:flutterbuyandsell/config/ps_config.dart';
+import 'package:flutterbuyandsell/ui/common/ps_hero.dart';
+import 'package:flutterbuyandsell/ui/common/ps_square_progress_widget.dart';
+import 'package:flutterbuyandsell/viewobject/default_icon.dart';
 import 'package:flutterbuyandsell/viewobject/default_photo.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:optimized_cached_image/widgets.dart';
@@ -48,9 +49,7 @@ class PsNetworkImage extends StatelessWidget {
           '${PsConfig.ps_app_image_thumbs_url}${defaultPhoto.imgPath}';
 
       return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16)
-        ),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
         child: PsHero(
           transitionOnUserGestures: true,
           tag: photoKey,
@@ -750,7 +749,7 @@ class PsNetworkCircleIconImage extends StatelessWidget {
         return GestureDetector(
             onTap: onTap,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10000.0),
+              // borderRadius: BorderRadius.circular(10000.0),
               child: OptimizedCacheImage(
                 placeholder: (BuildContext context, String url) {
                   if (PsConfig.USE_THUMBNAIL_AS_PLACEHOLDER) {

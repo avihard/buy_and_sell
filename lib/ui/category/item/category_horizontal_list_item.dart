@@ -34,31 +34,40 @@ class CategoryHorizontalListItem extends StatelessWidget {
                   BoxDecoration(borderRadius: BorderRadius.circular(20)),
               width: PsDimens.space100,
               child: Ink(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
-                color: PsColors.backgroundColor,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: PsColors.backgroundColor,
                 ),
                 child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      PsNetworkCircleIconImage(
-                        photoKey: '',
-                        defaultIcon: category.defaultIcon,
-                        width: PsDimens.space52,
-                        height: PsDimens.space52,
-                        boxfit: BoxFit.fitHeight,
+                  child: Stack(
+                    children: [
+                      Stack(
+                        children: [
+                          Center(
+                            child: PsNetworkImage(
+                              photoKey: '',
+                              defaultPhoto: category.defaultPhoto,
+                              width: PsDimens.space160,
+                              height: PsDimens.space160,
+                              boxfit: BoxFit.cover,
+                            ),
+                          ),
+                          Container(
+                            // width: 200,
+                            // height: double.infinity,
+                            decoration: BoxDecoration(
+                                color: PsColors.black.withAlpha(110),
+                                borderRadius: BorderRadius.circular(16)),
+                          )
+                        ],
                       ),
-                      const SizedBox(
-                        height: PsDimens.space8,
-                      ),
-                      Text(
-                        category.catName,
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText2
-                            .copyWith(fontWeight: FontWeight.bold),
+                      Center(
+                        child: Text(
+                          category.catName,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodyText2.copyWith(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
                       ),
                     ],
                   ),

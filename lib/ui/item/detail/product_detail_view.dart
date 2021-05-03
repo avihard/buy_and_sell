@@ -1,4 +1,7 @@
 import 'dart:async';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:flutterbuyandsell/api/common/ps_resource.dart';
@@ -45,12 +48,9 @@ import 'package:flutterbuyandsell/viewobject/holder/user_block_parameter_holder.
 import 'package:flutterbuyandsell/viewobject/holder/user_delete_item_parameter_holder.dart';
 import 'package:flutterbuyandsell/viewobject/holder/user_report_item_parameter_holder.dart';
 import 'package:flutterbuyandsell/viewobject/product.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetailView extends StatefulWidget {
   const ProductDetailView(
@@ -217,8 +217,10 @@ class _ProductDetailState extends State<ProductDetailView>
                                     itemDetailProvider: provider,
                                     userProvider: userProvider,
                                     itemId: provider.itemDetail.data.id,
-                                    itemUserId: provider.itemDetail.data.user.userId,
-                                    addedUserId: provider.itemDetail.data.addedUserId,
+                                    itemUserId:
+                                        provider.itemDetail.data.user.userId,
+                                    addedUserId:
+                                        provider.itemDetail.data.addedUserId,
                                     reportedUserId: psValueHolder.loginUserId,
                                     loginUserId: psValueHolder.loginUserId,
                                     itemTitle: provider.itemDetail.data.title,
@@ -250,14 +252,16 @@ class _ProductDetailState extends State<ProductDetailView>
                                   children: <Widget>[
                                     PsNetworkImage(
                                       photoKey: widget.heroTagImage,
-                                      defaultPhoto: provider.itemDetail.data.defaultPhoto,
+                                      defaultPhoto:
+                                          provider.itemDetail.data.defaultPhoto,
                                       width: double.infinity,
                                       height: PsDimens.space300,
                                       boxfit: BoxFit.cover,
                                       onTap: () {
                                         Navigator.pushNamed(
                                             context, RoutePaths.galleryGrid,
-                                            arguments: provider.itemDetail.data);
+                                            arguments:
+                                                provider.itemDetail.data);
                                       },
                                     ),
                                     if (provider.itemDetail.data.addedUserId ==
@@ -427,10 +431,9 @@ class _ProductDetailState extends State<ProductDetailView>
                                                     child: Container(
                                                       decoration: BoxDecoration(
                                                           borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      PsDimens
-                                                                          .space16),
+                                                              BorderRadius.circular(
+                                                                  PsDimens
+                                                                      .space16),
                                                           color: PsColors
                                                               .mainColor),
                                                       padding:
@@ -492,8 +495,8 @@ class _ProductDetailState extends State<ProductDetailView>
                                                   onTap: () {
                                                     Navigator.pushNamed(context,
                                                         RoutePaths.galleryGrid,
-                                                        arguments:
-                                                            provider.itemDetail.data);
+                                                        arguments: provider
+                                                            .itemDetail.data);
                                                   },
                                                 ),
                                               ],
@@ -623,7 +626,8 @@ class _ProductDetailState extends State<ProductDetailView>
                                               onTap: () {
                                                 Navigator.pushNamed(context,
                                                     RoutePaths.galleryGrid,
-                                                    arguments: provider.itemDetail.data);
+                                                    arguments: provider
+                                                        .itemDetail.data);
                                               },
                                             ),
                                           ],
@@ -647,8 +651,10 @@ class _ProductDetailState extends State<ProductDetailView>
                                   SellerInfoTileView(
                                     itemDetail: provider,
                                   ),
-                                  if (provider.itemDetail.data.isOwner == PsConst.ONE &&
-                                      provider.itemDetail.data.status == PsConst.ONE &&
+                                  if (provider.itemDetail.data.isOwner ==
+                                          PsConst.ONE &&
+                                      provider.itemDetail.data.status ==
+                                          PsConst.ONE &&
                                       (provider.itemDetail.data.paidStatus ==
                                               PsConst.ADSNOTAVAILABLE ||
                                           provider.itemDetail.data.paidStatus ==
@@ -662,7 +668,8 @@ class _ProductDetailState extends State<ProductDetailView>
                                     Container(),
                                   SafetyTipsTileView(
                                       animationController: animationController),
-                                  LocationTileView(item: provider.itemDetail.data),
+                                  LocationTileView(
+                                      item: provider.itemDetail.data),
                                   GettingThisTileView(
                                       detailOption:
                                           provider.itemDetail.data.dealOption,
@@ -724,97 +731,90 @@ class _PopUpMenuWidget extends StatelessWidget {
   final String itemImage;
   final BuildContext context;
   final ItemDetailProvider itemDetailProvider;
-  
 
   Future<void> _onSelect(String value) async {
-
     switch (value) {
       case '1':
         showDialog<dynamic>(
-            context: context,
-            builder: (BuildContext context) {
-              return ConfirmDialogView(
-                  description: Utils.getString(
-                      context, 'item_detail__confirm_dialog_report_item'),
-                  leftButtonText: Utils.getString(
-                      context, 'dialog__cancel'),
-                  rightButtonText: Utils.getString(
-                      context, 'dialog__ok'),
+          context: context,
+          builder: (BuildContext context) {
+            return ConfirmDialogView(
+                description: Utils.getString(
+                    context, 'item_detail__confirm_dialog_report_item'),
+                leftButtonText: Utils.getString(context, 'dialog__cancel'),
+                rightButtonText: Utils.getString(context, 'dialog__ok'),
+                onAgreeTap: () async {
+                  await PsProgressDialog.showDialog(context);
 
-                  onAgreeTap:() async {
+                  final UserReportItemParameterHolder
+                      userReportItemParameterHolder =
+                      UserReportItemParameterHolder(
+                          itemId: itemId, reportedUserId: reportedUserId);
 
-                     await PsProgressDialog.showDialog(context);
+                  final PsResource<ApiStatus> _apiStatus = await userProvider
+                      .userReportItem(userReportItemParameterHolder.toMap());
 
-                     final UserReportItemParameterHolder userReportItemParameterHolder =
-                     UserReportItemParameterHolder(
-                     itemId: itemId, reportedUserId: reportedUserId);
-
-                    final PsResource<ApiStatus> _apiStatus = await userProvider
-                    .userReportItem(userReportItemParameterHolder.toMap());  
-                    
-                    if(_apiStatus != null &&_apiStatus.data != null &&_apiStatus.data.status != null){
-
-                    await itemDetailProvider.deleteLocalProductCacheById(itemId, reportedUserId);
-   
-                    }
-
-                    PsProgressDialog.dismissDialog();
-
-                    Navigator.of(context).popUntil(ModalRoute.withName(RoutePaths.home));
+                  if (_apiStatus != null &&
+                      _apiStatus.data != null &&
+                      _apiStatus.data.status != null) {
+                    await itemDetailProvider.deleteLocalProductCacheById(
+                        itemId, reportedUserId);
                   }
-              );
-            },
-        );
-     
-      
-      break;
 
-       case '2':
+                  PsProgressDialog.dismissDialog();
+
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(RoutePaths.home));
+                });
+          },
+        );
+
+        break;
+
+      case '2':
         showDialog<dynamic>(
-            context: context,
-            builder: (BuildContext context) {
-              return ConfirmDialogView(
-                  description: Utils.getString(
-                      context, 'item_detail__confirm_dialog_block_user'),
-                  leftButtonText: Utils.getString(
-                      context, 'dialog__cancel'),
-                  rightButtonText: Utils.getString(
-                      context, 'dialog__ok'),
+          context: context,
+          builder: (BuildContext context) {
+            return ConfirmDialogView(
+                description: Utils.getString(
+                    context, 'item_detail__confirm_dialog_block_user'),
+                leftButtonText: Utils.getString(context, 'dialog__cancel'),
+                rightButtonText: Utils.getString(context, 'dialog__ok'),
+                onAgreeTap: () async {
+                  await PsProgressDialog.showDialog(context);
 
-                  onAgreeTap:() async {
+                  final UserBlockParameterHolder userBlockItemParameterHolder =
+                      UserBlockParameterHolder(
+                          loginUserId: loginUserId, addedUserId: addedUserId);
 
-                    await PsProgressDialog.showDialog(context);
+                  final PsResource<ApiStatus> _apiStatus = await userProvider
+                      .blockUser(userBlockItemParameterHolder.toMap());
 
-                    final UserBlockParameterHolder userBlockItemParameterHolder =
-                    UserBlockParameterHolder(
-                    loginUserId: loginUserId, addedUserId: addedUserId);
-
-                    final PsResource<ApiStatus> _apiStatus = await userProvider
-                    .blockUser(userBlockItemParameterHolder.toMap());   
-                    
-                     if(_apiStatus != null &&_apiStatus.data != null &&_apiStatus.data.status != null){
-
-                    await itemDetailProvider.deleteLocalProductCacheByUserId(loginUserId, addedUserId);
-   
-                    }
-
-                    PsProgressDialog.dismissDialog();
-
-                    Navigator.of(context).popUntil(ModalRoute.withName(RoutePaths.home));
+                  if (_apiStatus != null &&
+                      _apiStatus.data != null &&
+                      _apiStatus.data.status != null) {
+                    await itemDetailProvider.deleteLocalProductCacheByUserId(
+                        loginUserId, addedUserId);
                   }
-              );
-            },
+
+                  PsProgressDialog.dismissDialog();
+
+                  Navigator.of(context)
+                      .popUntil(ModalRoute.withName(RoutePaths.home));
+                });
+          },
         );
-      break;
+        break;
 
       case '3':
         //Share.share('http://www.dealitin.com');
 
         await FlutterShare.share(
-          title: itemTitle,
-          text: 'Go to App:\n' + itemDetailProvider.itemDetail.data.dynamicLink ?? '',
-          linkUrl: 'Image:\n' + PsConfig.ps_app_image_url + itemImage
-        );
+            title: itemTitle,
+            text: 'Go to App:\n' +
+                    itemDetailProvider.itemDetail.data.dynamicLink ??
+                '',
+            linkUrl: 'Image:\n' + PsConfig.ps_app_image_url + itemImage);
 
         // final HttpClientRequest request = await HttpClient()
         //     .getUrl(Uri.parse(PsConfig.ps_app_image_url + itemImage));
@@ -827,7 +827,6 @@ class _PopUpMenuWidget extends StatelessWidget {
       default:
         print('English');
         break;
-    
     }
   }
 
@@ -837,34 +836,34 @@ class _PopUpMenuWidget extends StatelessWidget {
       onSelected: _onSelect,
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry<String>>[
-            if (itemDetailProvider.psValueHolder.loginUserId != itemUserId && 
-              itemDetailProvider.psValueHolder.loginUserId != null && 
+          if (itemDetailProvider.psValueHolder.loginUserId != itemUserId &&
+              itemDetailProvider.psValueHolder.loginUserId != null &&
               itemDetailProvider.psValueHolder.loginUserId != '')
             PopupMenuItem<String>(
               value: '1',
               child: Visibility(
-              visible: true,
-              child: Text(
-                Utils.getString(context, 'item_detail__report_item'),
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-            ),
-          ),
-            if (itemDetailProvider.psValueHolder.loginUserId != itemUserId && 
-              itemDetailProvider.psValueHolder.loginUserId != null && 
-              itemDetailProvider.psValueHolder.loginUserId != '')
-                PopupMenuItem<String>(
-                value: '2',
-                child: Visibility(
-                  visible: true,
-                  child: Text(
-                Utils.getString(context, 'item_detail__block_user'),
-                style: Theme.of(context).textTheme.bodyText1,
+                visible: true,
+                child: Text(
+                  Utils.getString(context, 'item_detail__report_item'),
+                  style: Theme.of(context).textTheme.bodyText1,
                 ),
               ),
-           ),
+            ),
+          if (itemDetailProvider.psValueHolder.loginUserId != itemUserId &&
+              itemDetailProvider.psValueHolder.loginUserId != null &&
+              itemDetailProvider.psValueHolder.loginUserId != '')
+            PopupMenuItem<String>(
+              value: '2',
+              child: Visibility(
+                visible: true,
+                child: Text(
+                  Utils.getString(context, 'item_detail__block_user'),
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+              ),
+            ),
           PopupMenuItem<String>(
-           value: '3',
+            value: '3',
             child: Text(Utils.getString(context, 'item_detail__share'),
                 style: Theme.of(context).textTheme.bodyText1),
           ),
@@ -1127,9 +1126,10 @@ class _IconsAndTwoTitleTextWidget extends StatelessWidget {
                       userId: itemProvider.itemDetail.data.addedUserId,
                       userName: itemProvider.itemDetail.data.user.userName));
             },
-            child: Text(itemProvider.itemDetail.data.user.userName == ''?
-              Utils.getString(context, 'default__user_name'):
-              '${itemProvider.itemDetail.data.user.userName}',
+            child: Text(
+              itemProvider.itemDetail.data.user.userName == ''
+                  ? Utils.getString(context, 'default__user_name')
+                  : '${itemProvider.itemDetail.data.user.userName}',
               style: Theme.of(context)
                   .textTheme
                   .bodyText2
@@ -1213,9 +1213,10 @@ class __CallAndChatButtonWidgetState extends State<_CallAndChatButtonWidget> {
                           hasShadow: false,
                           colorData: PsColors.black.withOpacity(0.1),
                           icon: (widget.provider != null &&
-                                      widget.provider.itemDetail != null &&
-                                      widget.provider.itemDetail.data != null )
-                              ? widget.provider.itemDetail.data.isFavourited == PsConst.ZERO
+                                  widget.provider.itemDetail != null &&
+                                  widget.provider.itemDetail.data != null)
+                              ? widget.provider.itemDetail.data.isFavourited ==
+                                      PsConst.ZERO
                                   ? Icons.favorite_border
                                   : Icons.favorite
                               : null,
@@ -1260,14 +1261,16 @@ class __CallAndChatButtonWidgetState extends State<_CallAndChatButtonWidget> {
                                   }
                                   if (widget.provider != null &&
                                       widget.provider.itemDetail != null &&
-                                      widget.provider.itemDetail.data != null ) {
-                                  if(widget.provider.itemDetail.data.isFavourited == PsConst.ONE){
-                                    icon = Icon(Icons.favorite,
-                                        color: PsColors.mainColor);
-                                  } else {
-                                    icon = Icon(Icons.favorite_border,
-                                        color: PsColors.mainColor);
-                                  }
+                                      widget.provider.itemDetail.data != null) {
+                                    if (widget.provider.itemDetail.data
+                                            .isFavourited ==
+                                        PsConst.ONE) {
+                                      icon = Icon(Icons.favorite,
+                                          color: PsColors.mainColor);
+                                    } else {
+                                      icon = Icon(Icons.favorite_border,
+                                          color: PsColors.mainColor);
+                                    }
                                   }
                                 } else {
                                   print('There is no comment');
@@ -1279,7 +1282,7 @@ class __CallAndChatButtonWidgetState extends State<_CallAndChatButtonWidget> {
                         const SizedBox(
                           width: PsDimens.space10,
                         ),
-                        if (widget.provider.itemDetail.data.user.userPhone !=
+                        /*if (widget.provider.itemDetail.data.user.userPhone !=
                                 null &&
                             widget.provider.itemDetail.data.user.userPhone !=
                                 '')
@@ -1300,7 +1303,7 @@ class __CallAndChatButtonWidgetState extends State<_CallAndChatButtonWidget> {
                             },
                           )
                         else
-                          Container(),
+                          Container(),*/
                         const SizedBox(
                           width: PsDimens.space10,
                         ),
@@ -1451,7 +1454,7 @@ class _EditAndDeleteButtonWidget extends StatelessWidget {
                                             await provider.userDeleteItem(
                                                 userDeleteItemParameterHolder
                                                     .toMap());
-                                                   
+
                                         if (_apiStatus.data.status ==
                                             'success') {
                                           Fluttertoast.showToast(
@@ -1654,28 +1657,27 @@ class _PromoteTileViewState extends State<PromoteTileView> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  const SizedBox(width : PsDimens.space2),
+                  const SizedBox(width: PsDimens.space2),
                   SizedBox(
-                        width: PsDimens.space220,
-                        child: PSButtonWithIconWidget(
-                            hasShadow: false,
-                            width: double.infinity,
-                            icon: Ionicons.ios_megaphone,
-                            titleText:
-                                Utils.getString(context, 'item_detail__promte'),
-                            onPressed: () async {
-                              final dynamic returnData =
-                                  await Navigator.pushNamed(
-                                      context, RoutePaths.itemPromote,
-                                      arguments: widget.product);
-                              if (returnData == true || returnData == null ) {
-                                final String loginUserId =
-                                    Utils.checkUserLoginId(
-                                        widget.provider.psValueHolder);
-                                widget.provider.loadProduct(
-                                    widget.product.id, loginUserId);
-                              }
-                            })),
+                      width: PsDimens.space220,
+                      child: PSButtonWithIconWidget(
+                          hasShadow: false,
+                          width: double.infinity,
+                          icon: Ionicons.ios_megaphone,
+                          titleText:
+                              Utils.getString(context, 'item_detail__promte'),
+                          onPressed: () async {
+                            final dynamic returnData =
+                                await Navigator.pushNamed(
+                                    context, RoutePaths.itemPromote,
+                                    arguments: widget.product);
+                            if (returnData == true || returnData == null) {
+                              final String loginUserId = Utils.checkUserLoginId(
+                                  widget.provider.psValueHolder);
+                              widget.provider
+                                  .loadProduct(widget.product.id, loginUserId);
+                            }
+                          })),
                   Padding(
                     padding: const EdgeInsets.only(
                         right: PsDimens.space18, bottom: PsDimens.space8),

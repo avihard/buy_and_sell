@@ -44,6 +44,8 @@ import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
+String cityName;
+
 class ItemEntryView extends StatefulWidget {
   const ItemEntryView(
       {Key key, this.flag, this.item, @required this.animationController})
@@ -1179,7 +1181,7 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
           )
         ],
       ),
-      /*PsDropdownBaseWithControllerWidget(
+      PsDropdownBaseWithControllerWidget(
           title: Utils.getString(context, 'item_entry__location'),
           // selectedText: provider.selectedItemLocation == ''
           //     ? provider.psValueHolder.locactionName
@@ -1200,8 +1202,8 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
                 await Navigator.pushNamed(context, RoutePaths.itemLocation);
 
             if (itemLocationResult !=
-                    null */ /*&&
-                itemLocationResult is ItemLocation*/ /*
+                    null /*&&
+                itemLocationResult is ItemLocation*/
                 ) {
               provider.itemLocationId = itemLocationResult.id;
               setState(() {
@@ -1217,12 +1219,13 @@ class _AllControllerTextWidgetState extends State<AllControllerTextWidget> {
                 widget.userInputAddress.text = '';
               });
             }
-          }),*/
+          }),
       CurrentLocationWidget(
         androidFusedLocation: true,
         textEditingController: widget.userInputAddress,
         latController: widget.userInputLattitude,
         lngController: widget.userInputLongitude,
+        locationConroller: widget.locationController,
         valueHolder: valueHolder,
         updateLatLng: (Position currentPosition) {
           if (currentPosition != null) {
@@ -1832,6 +1835,7 @@ class CurrentLocationWidget extends StatefulWidget {
     @required this.textEditingController,
     @required this.latController,
     @required this.lngController,
+    @required this.locationConroller,
     @required this.valueHolder,
     @required this.updateLatLng,
   }) : super(key: key);
@@ -1842,6 +1846,7 @@ class CurrentLocationWidget extends StatefulWidget {
   final TextEditingController lngController;
   final PsValueHolder valueHolder;
   final Function updateLatLng;
+  final TextEditingController locationConroller;
 
   @override
   _LocationState createState() => _LocationState();
@@ -1868,6 +1873,7 @@ class _LocationState extends State<CurrentLocationWidget> {
       address = '${first.addressLine}, ${first.countryName}';
       setState(() {
         widget.textEditingController.text = address;
+        widget.locationConroller.text = first.locality;
         widget.latController.text = _currentPosition.latitude.toString();
         widget.lngController.text = _currentPosition.longitude.toString();
         widget.updateLatLng(_currentPosition);
